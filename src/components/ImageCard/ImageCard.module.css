@@ -2,4 +2,9 @@
   width: 360px;
   height: 200px;
   object-fit: cover;
+  transition: 0.5s;
+}
+
+.cardImg:hover {
+  transform: scale(1.1);
 }

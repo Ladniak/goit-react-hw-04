@@ -55,6 +55,7 @@ function App() {
         }
       } catch (error) {
         setError(error.message);
+        setIsLoading
       } finally {
         setIsLoading(false);
       }
@@ -77,7 +78,7 @@ function App() {
     <>
       <SearchBar onSearch={onSearch} />
       <ImageGallery images={images} onImageClick={onImageClick} />
-      {totalPages > page ? <LoadMoreBtn onLoadMore={onLoadMore} /> : null}
+      {!error && totalPages > page ? <LoadMoreBtn onLoadMore={onLoadMore} /> : null}
       {isLoading && (
         <div className="loadDiv">
           <Loader />
