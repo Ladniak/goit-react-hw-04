@@ -10,7 +10,7 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 
 function App() {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchValue, setSearchValue] = useState(null);
@@ -21,7 +21,8 @@ function App() {
 
   const onSearch = (value) => {
     setSearchValue(value);
-    setImages([]);
+    setImages(null);
+    setError(null);
     setPage(1);
   };
 
