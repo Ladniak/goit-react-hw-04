@@ -1,6 +1,12 @@
 
-export const LoadMoreBtn = () => {
+export const LoadMoreBtn = ({ onLoadMore }) => {
+
+    const handleClick = () => {
+        onLoadMore();
+    }
     return (
-        <div>LoadMoreBtn</div>
+        <>
+            <button onClick={handleClick} type="button">Load More</button>
+        </>
     )
 }
