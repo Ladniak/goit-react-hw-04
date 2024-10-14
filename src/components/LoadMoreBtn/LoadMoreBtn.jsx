@@ -1,12 +1,16 @@
+import module from './LoadMoreBtn.module.css';
 
-export const LoadMoreBtn = ({ onLoadMore }) => {
+const LoadMoreBtn = ({ onLoadMore }) => {
 
     const handleClick = () => {
         onLoadMore();
     }
+
     return (
         <>
-            <button onClick={handleClick} type="button">Load More</button>
+            <button className={module.loadBtn} onClick={handleClick} type="button">Load More</button>
         </>
     )
 }
+
+export default LoadMoreBtn
