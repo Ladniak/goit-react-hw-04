@@ -6,8 +6,8 @@ export const ImageGallery = ({ images, onImageClick }) => {
     return (
         <ul className={module.imageList}>
             {Array.isArray(images) && images.map((item) => {
-                return (<li key={item.id} onClick={() => onImageClick(item)}>
-                    <ImageCard item={item} />
+                return (<li key={item.id}>
+                    <ImageCard item={item} onImageClick={onImageClick} />
                 </li>)
             })}
 

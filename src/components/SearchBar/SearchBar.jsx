@@ -1,12 +1,15 @@
 import module from './SearchBar.module.css'
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, notify }) => {
 
     const handleSubmit = (event) => {
-        const searchValue = event.currentTarget.elements.search.value;
-        onSearch(searchValue);
-
         event.preventDefault();
+        const searchValue = event.currentTarget.elements.search.value;
+        if (searchValue === '') {
+            notify();
+        } else {
+            onSearch(searchValue);
+        }
     }
 
 

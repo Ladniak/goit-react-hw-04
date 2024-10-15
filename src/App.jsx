@@ -8,6 +8,8 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import './App.css';
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [images, setImages] = useState(null);
@@ -18,6 +20,21 @@ function App() {
   const [totalPages, setTotalPages] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [inputIsEmpty, setInputIsEmpty] = useState(false);
+
+  const notify = () => {
+    toast.info('The input must be filled!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setInputIsEmpty(true);
+  }
 
   const onSearch = (value) => {
     setSearchValue(value);
@@ -55,7 +72,7 @@ function App() {
         }
       } catch (error) {
         setError(error.message);
-        setIsLoading
+        setIsLoading(false);
       } finally {
         setIsLoading(false);
       }
@@ -76,8 +93,9 @@ function App() {
 
   return (
     <>
-      <SearchBar onSearch={onSearch} />
+      <SearchBar notify={notify} onSearch={onSearch} />
       <ImageGallery images={images} onImageClick={onImageClick} />
+      {inputIsEmpty && <ToastContainer />}
       {!error && totalPages > page ? <LoadMoreBtn onLoadMore={onLoadMore} /> : null}
       {isLoading && (
         <div className="loadDiv">
